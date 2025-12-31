@@ -12,6 +12,16 @@ RUN yarn install --frozen-lockfile --production=false
 # Copy source code
 COPY . .
 
+# Accept build arguments for environment variables
+ARG VITE_SANITY_PROJECT_ID
+ARG VITE_SANITY_DATASET
+ARG VITE_SANITY_API_VERSION
+
+# Set as environment variables for the build
+ENV VITE_SANITY_PROJECT_ID=$VITE_SANITY_PROJECT_ID
+ENV VITE_SANITY_DATASET=$VITE_SANITY_DATASET
+ENV VITE_SANITY_API_VERSION=$VITE_SANITY_API_VERSION
+
 # Build the application
 RUN yarn build
 
